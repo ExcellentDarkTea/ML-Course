@@ -11,12 +11,3 @@ Each folder in this repository corresponds to a specific homework assignment. Ea
 - Required datasets (or links to datasets).
 - Any supplementary files or documentation.
 
-## Topics Covered
-
-The assignments cover a wide range of ML topics, including but not limited to:
-- Data preprocessing and feature engineering
-- Supervised learning (e.g., regression, classification)
-- Unsupervised learning (e.g., clustering, dimensionality reduction)
-- Neural networks and deep learning
-- Model evaluation and hyperparameter tuning
-- Interpretability of machine learning models
