@@ -4,16 +4,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, OneHotEncoder
 from typing import Tuple, List, Optional, Dict, Any
 
-"""
-Example usage:
-df_raw = pd.read_csv('train.csv')
-preprocessed_data = preprocess_data(df_raw, scaler_numeric=True, scaler_type='standard')
-
-#new data to preprocess:
-new_data = pd.read_csv('new_data.csv')
-preprocessed_new_data = preprocess_new_data(new_data, preprocessed_data)
-"""
-
 def split_data(df: pd.DataFrame, target_col: str, test_size: float = 0.2, random_state: int = 42) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Split the data into training and validation sets.
@@ -156,6 +146,32 @@ def preprocess_data(df: pd.DataFrame, scaler_numeric: bool = True, scaler_type: 
         'numeric_cols': numeric_cols
     }
     
+# X_train, X_val, y_train, y_val, scaler, encoder
+
+# def preprocess_new_data(new_data: pd.DataFrame, scaler: Optional[object], encoder: OneHotEncoder, numeric_cols: List[str], categorical_cols: List[str]) -> pd.DataFrame:
+#     """
+#     Preprocess new data using the fitted scaler and encoder.
+
+#     Args:
+#         new_data (pd.DataFrame): New data to preprocess.
+#         scaler (Optional[object]): Fitted scaler (StandardScaler or MinMaxScaler) or None.
+#         encoder (OneHotEncoder): Fitted OneHotEncoder.
+#         numeric_cols (List[str]): List of numeric column names.
+#         categorical_cols (List[str]): List of categorical column names.
+
+#     Returns:
+#         pd.DataFrame: Preprocessed new data.
+#     """
+#     numeric_cols, categorical_cols = get_column_types(new_data)
+
+#     if scaler is not None:
+#         new_data[numeric_cols] = scaler.transform(new_data[numeric_cols])
+    
+#     encoded_cols = list(encoder.get_feature_names_out(categorical_cols))
+#     new_data[encoded_cols] = encoder.transform(new_data[categorical_cols])
+    
+#     return new_data[numeric_cols + encoded_cols]
+
 def preprocess_new_data(new_data: pd.DataFrame, preprocessing_info: Dict[str, Any]) -> pd.DataFrame:
     """
     Preprocess new data using the fitted scaler, encoder, and column information.
@@ -188,4 +204,10 @@ def preprocess_new_data(new_data: pd.DataFrame, preprocessing_info: Dict[str, An
     final_data = pd.concat([processed_data[numeric_cols], encoded_df], axis=1)
 
     return final_data
+# Example usage:
+# df_raw = pd.read_csv('train.csv')
+# preprocessed_data = preprocess_data(df_raw, scaler_numeric=True, scaler_type='standard')
 
+# # Now, when you have new data to preprocess:
+# new_data = pd.read_csv('new_data.csv')
+# preprocessed_new_data = preprocess_new_data(new_data, preprocessed_data)
